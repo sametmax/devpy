@@ -14,7 +14,7 @@ Install
 Autolog
 ========
 
-Setuping proper loging is tedious, so you may want to do it later, but you wish you could get basic logging right now:
+Setuping proper loging is tedious, so you may want to do it later, but you wish you could get basic logging right now::
 
     import devpy
 
@@ -41,7 +41,8 @@ Format the stack trace so that:
 - it emphasis the lines of your programs and not the stdlb
 - lines of your program are syntax highlited
 
-::
+Just do::
+
     import devpy
     log = devpy.color_traceback()
 
@@ -49,7 +50,8 @@ Format the stack trace so that:
 All helpers at once
 ===================
 
-::
+Two ways::
+
     import devpy
     log = devpy.dev_mode()  # can set color_traceback=True, autolog=True
 
