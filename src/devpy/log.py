@@ -1,4 +1,5 @@
 
+
 import sys
 import logging
 import inspect
@@ -30,6 +31,9 @@ def autolog(
         return _cache[name]
 
     logger = logging.getLogger(name)
+
+    filelogger = logging.getLogger('__fileonely__')
+
     logger.setLevel(level)
 
     log_file = path or Path(temp_dir(name)) / "auto.log"
@@ -39,6 +43,7 @@ def autolog(
     file_handler = RotatingFileHandler(log_file, 'a', 1000000, 1)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
+    filelogger.addHandler(file_handler)
 
     steam_handler = logging.StreamHandler()
     logger.addHandler(steam_handler)
@@ -46,7 +51,10 @@ def autolog(
     previous_hook = sys.excepthook
 
     def on_crash(type, value, tb):
-        logging.exception(f"The program crashed on: {value}")
+        filelogger.critical(
+            "The program crashed on:",
+            exc_info=(type, value, tb)
+        )
         previous_hook(type, value, tb)
 
     if log_on_crash:
