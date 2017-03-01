@@ -20,7 +20,7 @@ Setuping proper loging is tedious, so you may want to do it later, but you wish 
 
     # Get a logger that automatically log to console and a rotating file
     # The rotating file is setup in the temp directory of your system, in
-    # a subdir named after your __name__.
+    # a subdir named after your script name.
     # The file path is printed at the begining of the program.
 
     log = devpy.autolog() # log is a regular stdlib logger object
