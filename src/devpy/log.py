@@ -1,8 +1,7 @@
 
-
+import os
 import sys
 import logging
-import inspect
 
 from pathlib import Path
 
@@ -10,10 +9,15 @@ from logging.handlers import RotatingFileHandler
 
 from .temp import temp_dir
 
+try:
+    env_log_level = os.environ.get("DEVPY_LOG_LEVEL", -1)
+    DEFAULT_LOG_LEVEL = int(env_log_level)
+except ValueError:
+    DEFAULT_LOG_LEVEL = getattr(logging, str(env_log_level).upper(), -1)
 
 # todo: add pretty print
 def autolog(
-    level=-1,
+    level=DEFAULT_LOG_LEVEL,
     name=None,
     path=None,
     log_on_crash=True,
@@ -32,7 +36,7 @@ def autolog(
 
     logger = logging.getLogger(name)
 
-    filelogger = logging.getLogger('__fileonely__')
+    filelogger = logging.getLogger('__fileonly__')
 
     logger.setLevel(level)
 
@@ -61,7 +65,7 @@ def autolog(
         sys.excepthook = on_crash
 
     if log_filename:
-        logger.info(f'Starting to log in "{log_file}"')
+        logger.info('Starting to log in "{}"'.format(log_file))
 
     _cache[name] = logger
 

@@ -31,6 +31,8 @@ Setuping proper loging is tedious, so you may want to do it later, but you wish 
 
 Once you have time to setup logging seriously, you can just replace the autolog with a regular custom Python logger, and all your logs will still work.
 
+Setting the environment variable DEVPY_LOG_LEVEL to an integer or a level name (debug, info, error, warning, critical...) will set the autolog log to it.
+
 
 Stacktrace helper
 =================
@@ -38,13 +40,13 @@ Stacktrace helper
 Format the stack trace so that:
 
 - it separates the various logicial blocs
-- it emphasis the lines of your programs and not the stdlb
-- lines of your program are syntax highlited
+- it emphasis the lines of your program and not the stdlb
+- lines of your program are syntax highlighted
 
 Just do::
 
     import devpy
-    log = devpy.color_traceback()
+    devpy.color_traceback()
 
 
 All helpers at once
@@ -58,3 +60,6 @@ Two ways::
     # or just
     # import devpy.develop as log
     # for a one liner to activate it all
+
+
+

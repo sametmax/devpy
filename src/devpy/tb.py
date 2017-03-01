@@ -15,6 +15,7 @@ if hasattr(sys, 'real_prefix'):
     LIB_DIRS.append(sysconfig.get_path('stdlib')
                              .replace(sys.prefix, sys.real_prefix))
 
+
 def color_traceback(previous_hook=None):
 
     previous_hook = sys.excepthook
@@ -54,7 +55,7 @@ class CustomColorizer(Colorizer):
                     continue
 
                 if (line.strip().startswith('File ')
-                    and not any(d in line for d in LIB_DIRS)):
+                    and not any(d in line for d in LIB_DIRS)):  # noqa
                     yield colline
                     line, colline = next(gen)
                     yield colline + "\n"

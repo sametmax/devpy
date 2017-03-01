@@ -4,7 +4,7 @@ import devpy
 from .log import autolog  # noqa
 from .tb import color_traceback  # noqa
 
-__version__ = "0.1.2"
+__version__ = "0.1.4"
 
 
 def dev_mode(color_traceback=True, autolog=True):  # noqa
