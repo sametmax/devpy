@@ -64,5 +64,4 @@ setuptools.setup(name='devpy',
                               'Natural Language :: English',
                               'Programming Language :: Python :: 3.6',
                               'Programming Language :: Python :: 3 :: Only',
-                              'Management',
                               'Operating System :: OS Independent'],)

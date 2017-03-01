@@ -3,6 +3,13 @@ DEVPY
 
 Devpy is a set of tools to ease Python development.
 
+Install
+=========
+
+::
+
+    pip install devpy
+
 
 Autolog
 ========
