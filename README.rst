@@ -10,11 +10,39 @@ Install
 
     pip install devpy
 
+Quick demo
+===========
+
+Devpy provide a quick dev setup for logging that you can replace later by a more robust solution:
+
+.. code:: python
+
+    import devpy.develop as log
+
+    log.info('This is an info')
+    log.warning('This is a warning')
+    log.error('This is an error')
+    log.critical('This is a critical error')
+
+    log.info('Now let me crash the program. This stack trace is automatically in the log file:')
+
+    import codecs
+
+    codecs.open('/thisdoesnotexist')
+
+
+This gives:
+
+
+.. image:: screenshot.png
+
 
 Autolog
 ========
 
-Setuping proper loging is tedious, so you may want to do it later, but you wish you could get basic logging right now::
+Setuping proper loging is tedious, so you may want to do it later, but you wish you could get basic logging right now:
+
+.. code:: python
 
     import devpy
 
@@ -36,6 +64,15 @@ Setting the environment variable DEVPY_LOG_LEVEL to an integer or a level name (
 
 Setting the environment variable DEVPY_COLOR_LOG to 0 disable the color in the log.
 
+autolog parameters:
+
+- level (default=-1): the general log level
+- name (defaul=name of the root module): the name of the log file
+- path (default=OS temp dir + name): path to the log file
+- log_on_crash (default=True): add a hook to log the stack trace in case of a crash
+- log_filename (default=True): log log file pat at the program start
+- color_log (default=True): add colors to the log
+
 
 Stacktrace helper
 =================
@@ -46,7 +83,9 @@ Format the stack trace so that:
 - it emphasis the lines of your program and not the stdlb
 - lines of your program are syntax highlighted
 
-Just do::
+Just do:
+
+.. code:: python
 
     import devpy
     devpy.color_traceback()
@@ -55,7 +94,9 @@ Just do::
 All helpers at once
 ===================
 
-Two ways::
+Two ways:
+
+.. code:: python
 
     import devpy
     log = devpy.dev_mode()  # can set color_traceback=True, autolog=True

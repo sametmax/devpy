@@ -50,7 +50,7 @@ def autolog(
     log_file = path or Path(temp_dir(name)) / "auto.log"
 
     formatter = logging.Formatter(
-        '%(asctime)s :: %(levelname)s :: %(pathname)s :: %(message)s'
+        '%(asctime)s :: %(levelname)s :: %(pathname)s:%(lineno)s :: %(message)s'
     )
     file_handler = RotatingFileHandler(log_file, 'a', 1000000, 1)
     file_handler.setFormatter(formatter)
