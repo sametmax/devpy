@@ -1,3 +1,4 @@
 Pygments
 colorama
 colored-traceback
+colorlog

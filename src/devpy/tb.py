@@ -9,7 +9,7 @@ import pygments.lexers
 
 from colored_traceback.colored_traceback import Colorizer
 
-LIB_DIRS = [sysconfig.get_path('stdlib'), site.USER_SITE]
+LIB_DIRS = [sysconfig.get_path('stdlib'), site.USER_SITE, 'File "<frozen']
 if hasattr(sys, 'real_prefix'):
     LIB_DIRS.append(sys.prefix)
     LIB_DIRS.append(sysconfig.get_path('stdlib')

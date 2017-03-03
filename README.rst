@@ -21,6 +21,7 @@ Setuping proper loging is tedious, so you may want to do it later, but you wish 
     # Get a logger that automatically log to console and a rotating file
     # The rotating file is setup in the temp directory of your system, in
     # a subdir named after your script name.
+    # Logs are colored in the console according their level.
     # The file path is printed at the begining of the program.
 
     log = devpy.autolog() # log is a regular stdlib logger object
@@ -32,6 +33,8 @@ Setuping proper loging is tedious, so you may want to do it later, but you wish 
 Once you have time to setup logging seriously, you can just replace the autolog with a regular custom Python logger, and all your logs will still work.
 
 Setting the environment variable DEVPY_LOG_LEVEL to an integer or a level name (debug, info, error, warning, critical...) will set the autolog log to it.
+
+Setting the environment variable DEVPY_COLOR_LOG to 0 disable the color in the log.
 
 
 Stacktrace helper

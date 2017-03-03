@@ -5,6 +5,8 @@ import logging
 
 from pathlib import Path
 
+import colorlog
+
 from logging.handlers import RotatingFileHandler
 
 from .temp import temp_dir
@@ -15,6 +17,10 @@ try:
 except ValueError:
     DEFAULT_LOG_LEVEL = getattr(logging, str(env_log_level).upper(), -1)
 
+env_color_log = str(os.environ.get("DEVPY_COLOR_LOG", True)).strip().lower()
+DEFAULT_COLOR_LOG = env_color_log in ('true', 'yes', '1')
+
+
 # todo: add pretty print
 def autolog(
     level=DEFAULT_LOG_LEVEL,
@@ -22,6 +28,7 @@ def autolog(
     path=None,
     log_on_crash=True,
     log_filename=True,
+    color_log=DEFAULT_COLOR_LOG,
     _cache={}
 ):
 
@@ -41,6 +48,7 @@ def autolog(
     logger.setLevel(level)
 
     log_file = path or Path(temp_dir(name)) / "auto.log"
+
     formatter = logging.Formatter(
         '%(asctime)s :: %(levelname)s :: %(pathname)s :: %(message)s'
     )
@@ -49,8 +57,20 @@ def autolog(
     logger.addHandler(file_handler)
     filelogger.addHandler(file_handler)
 
-    steam_handler = logging.StreamHandler()
-    logger.addHandler(steam_handler)
+    if color_log:
+        stream_handler = colorlog.StreamHandler()
+        colored_formatter = colorlog.ColoredFormatter(
+            '%(log_color)s%(message)s',
+            log_colors={
+                'WARNING': 'yellow',
+                'ERROR': 'red',
+                'CRITICAL': 'red,bg_white'
+            }
+        )
+        stream_handler.setFormatter(colored_formatter)
+    else:
+        stream_handler = logging.StreamHandler()
+    logger.addHandler(stream_handler)
 
     previous_hook = sys.excepthook
 
