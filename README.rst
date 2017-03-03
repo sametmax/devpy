@@ -13,7 +13,7 @@ Install
 Quick demo
 ===========
 
-Devpy provide a quick dev setup for logging that you can replace later by a more robust solution:
+Devpy provides a quick dev setup for logging that you can replace later by a more robust solution:
 
 .. code:: python
 
@@ -40,17 +40,17 @@ This gives:
 Autolog
 ========
 
-Setuping proper loging is tedious, so you may want to do it later, but you wish you could get basic logging right now:
+Setting up proper logging is tedious, so you may want to do it later, but you wish you could get basic logging right away:
 
 .. code:: python
 
     import devpy
 
-    # Get a logger that automatically log to console and a rotating file
+    # Get a logger that automatically logs to console and a rotating file
     # The rotating file is setup in the temp directory of your system, in
     # a subdir named after your script name.
-    # Logs are colored in the console according their level.
-    # The file path is printed at the begining of the program.
+    # Logs are colored in the console according to their level.
+    # The file path is printed at the beginning of the program.
 
     log = devpy.autolog() # log is a regular stdlib logger object
 
@@ -62,7 +62,7 @@ Once you have time to setup logging seriously, you can just replace the autolog 
 
 Setting the environment variable DEVPY_LOG_LEVEL to an integer or a level name (debug, info, error, warning, critical...) will set the autolog log to it.
 
-Setting the environment variable DEVPY_COLOR_LOG to 0 disable the color in the log.
+Setting the environment variable DEVPY_COLOR_LOG to 0 disables log highlighting.
 
 autolog parameters:
 
@@ -70,7 +70,7 @@ autolog parameters:
 - name (defaul=name of the root module): the name of the log file
 - path (default=OS temp dir + name): path to the log file
 - log_on_crash (default=True): add a hook to log the stack trace in case of a crash
-- log_filename (default=True): log log file pat at the program start
+- log_filename (default=True): log log file path at the program start
 - color_log (default=True): add colors to the log
 
 
@@ -80,7 +80,7 @@ Stacktrace helper
 Format the stack trace so that:
 
 - it separates the various logicial blocs
-- it emphasis the lines of your program and not the stdlb
+- it emphasizes the lines of your program and not the stdlib
 - lines of your program are syntax highlighted
 
 Just do:
