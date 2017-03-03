@@ -27,7 +27,7 @@ def autolog(
 
     if not name:
         try:
-            name = Path(sys.argv[0]).with_suffix('').name
+            name = Path(sys.argv[0]).absolute().with_suffix('').name
         except IndexError:
             pass
 
