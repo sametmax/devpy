@@ -76,3 +76,4 @@ htmlcov
 *~
 
 *.sqlite
+\.idea/

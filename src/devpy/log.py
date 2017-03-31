@@ -1,13 +1,10 @@
-
+import logging
 import os
 import sys
-import logging
-
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 import colorlog
-
-from logging.handlers import RotatingFileHandler
 
 from .temp import temp_dir
 
@@ -31,7 +28,6 @@ def autolog(
     color_log=DEFAULT_COLOR_LOG,
     _cache={}
 ):
-
     if not name:
         try:
             name = Path(sys.argv[0]).absolute().with_suffix('').name
@@ -52,7 +48,7 @@ def autolog(
     formatter = logging.Formatter(
         '%(asctime)s :: %(levelname)s :: %(pathname)s:%(lineno)s :: %(message)s'
     )
-    file_handler = RotatingFileHandler(log_file, 'a', 1000000, 1)
+    file_handler = RotatingFileHandler(str(log_file), 'a', 1000000, 1)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
     filelogger.addHandler(file_handler)

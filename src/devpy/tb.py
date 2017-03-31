@@ -1,23 +1,20 @@
-
 import re
-import sys
 import site
-import traceback
+import sys
 import sysconfig
+import traceback
 
 import pygments.lexers
-
 from colored_traceback.colored_traceback import Colorizer
 
 LIB_DIRS = [sysconfig.get_path('stdlib'), site.USER_SITE, 'File "<frozen']
 if hasattr(sys, 'real_prefix'):
     LIB_DIRS.append(sys.prefix)
     LIB_DIRS.append(sysconfig.get_path('stdlib')
-                             .replace(sys.prefix, sys.real_prefix))
+                    .replace(sys.prefix, sys.real_prefix))
 
 
 def color_traceback(previous_hook=None):
-
     previous_hook = sys.excepthook
 
     def on_crash(type, value, tb):
@@ -31,7 +28,6 @@ def color_traceback(previous_hook=None):
 
 
 class CustomColorizer(Colorizer):
-
     def colorize_traceback(self, type, value, tb):
 
         rows = traceback.format_exception(type, value, tb)
